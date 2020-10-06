@@ -323,6 +323,7 @@ avahi,0.6
 bash,4.0
 bash,4.1,GPL 3.0
 busybox,
+openssl,
 udev,,"GPLv2.0+, LGPL-2.1+"
 ```
 
