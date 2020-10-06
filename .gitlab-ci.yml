@@ -1,0 +1,21 @@
+image: src.timesys.com:5001/timesys/security/timesys-security-bsp/ubuntu-18.04-build:latest
+
+stages:
+    - build
+    - test
+
+before_script:
+    - cd ~/
+    - mkdir test_folder
+
+build:
+    stage: build
+    script:
+        - echo "Building"
+        - touch test_folder/ci_testing_file.txt
+
+test:
+    stage: test
+    script:
+        - echo "Testing"
+        - file -f "test_folder/ci_testing_file.txt"
