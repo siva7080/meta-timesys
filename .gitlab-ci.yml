@@ -1,0 +1,19 @@
+image: src.timesys.com:5000/timesys/security/timesys-security-bsp/ubuntu-18.04-build:latest
+
+before_script:
+  - cd /timesys/input
+  - tsci-config branch dunfell-next
+  - echo "$CI_PROJECT_NAME:$CI_COMMIT_REF_NAME" | tee conf/refs.conf
+  - tsci keys "$SSH_KEY"
+
+build:
+  stage: build
+  tags: [Yocto]
+  rules:
+    - if: '$CI_PROJECT_PATH != "cbe/meta-timesys"'
+      when: never
+    - if: '$SSH_KEY == null'
+      when: never
+    - when: always
+  script:
+    - tsci build
